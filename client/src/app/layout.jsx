@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import Navbar from "@/components/Navbar/Navbar";
+import Providers from "./providers";
+import { Input } from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,10 +13,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
-            <body className={inter.className}>
-                <Navbar />
-                {children}
+        <html lang="en" className="flex flex-col h-screen w-screen">
+            <body className={"h-screen w-screen flex flex-col"}>
+                <Providers>
+                    <div className="h-screen w-full flex flex-col">
+                        <Navbar />
+                        {children}
+                    </div>
+                </Providers>
             </body>
         </html>
     );
