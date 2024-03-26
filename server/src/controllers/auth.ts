@@ -15,5 +15,10 @@ export const login = async (req: Request, res: Response) => {
     }
 
     const accessToken = jwt.sign({ email, password }, process.env.AUTH_TOKEN_SECRET || "");
-    res.json({ accessToken });
+    res.cookie("accessToken", accessToken, {
+        httpOnly: true,
+    });
+    res.status(200).json({ 
+        user
+     });
 };
