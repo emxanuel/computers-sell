@@ -9,8 +9,6 @@ import { auth } from "../middlewares/auth";
 
 const computersRouter = Router();
 
-computersRouter.use(auth);
-
 computersRouter.get("/", getAllComputers);
 computersRouter.get("/types", getComputersType);
 computersRouter.get("/types/:type", getAllComputersByType);
