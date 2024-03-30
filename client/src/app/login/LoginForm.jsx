@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import { Input, Button } from "@nextui-org/react";
 import { login } from "@/functions/auth";
+import Cookies from 'js-cookie'
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
