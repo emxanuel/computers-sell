@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { getComputers, getComputerById, getTypes, getComputersByType } from "../models/computers";
 
-export const getAllComputers = async (_: Request, res: Response) => {
+export const getAllComputers = async (req: Request, res: Response) => {
     try{
         const computers = await getComputers();
         res.json(computers);

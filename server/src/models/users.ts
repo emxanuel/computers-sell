@@ -19,3 +19,4 @@ export const verifyUser = (email: string, password: string) => UserModel.findOne
     email,
     password
 });
+export const verifyUserById = (id: string) => UserModel.findById(id);

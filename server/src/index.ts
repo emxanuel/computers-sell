@@ -1,5 +1,5 @@
 import express, {Request, Response, NextFunction} from 'express';
-import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 dotenv.config();
 import connectDB  from './services/db';
@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 80;
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());    
 app.use((_: Request, res: Response, next: NextFunction) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');

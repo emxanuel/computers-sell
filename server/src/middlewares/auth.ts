@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { getUserByEmail, verifyUser } from '../models/users';
+import { getUserByEmail, verifyUser, verifyUserById } from '../models/users';
 
 const secret = process.env.AUTH_TOKEN_SECRET && process.env.AUTH_TOKEN_SECRET || ''
 
 export const auth = (req: Request, res: Response, next: NextFunction) => {
-    const token = req.header('Authorization');
+    const token = /*req.cookies.accessToken as string ||*/ req.headers.authorization?.startsWith('Bearer') && req.headers.authorization.split(' ')[1] as string;
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
@@ -15,18 +15,17 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
             return res.status(403).json({ message: 'Forbidden' });
         }
         const d = data as jwt.JwtPayload
-        if (!d.email || !d.password) {
+        const user = verifyUserById(d.id);
+        if (!user) {
             return res.status(403).json({ message: 'Forbidden' });
         }
-        if (!d){
-            return res.status(403).json({ message: 'Forbidden' });
-        }
+
         next();
     });
 }
 
 export const adminAuth = (req: Request, res: Response, next: NextFunction) => {
-    const token = req.header('Authorization');
+    const token = req.cookies.accessToken as string || req.headers.authorization?.startsWith('Bearer') && req.headers.authorization.split(' ')[1] as string;
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
@@ -36,7 +35,7 @@ export const adminAuth = (req: Request, res: Response, next: NextFunction) => {
             return res.status(403).json({ message: 'Forbidden' });
         }
         const d = data as jwt.JwtPayload
-        const user = await verifyUser(d.email, d.password);
+        const user = await verifyUserById(d.id);
         
         if (user?.role !== 'admin') {
             return res.status(403).json({ message: 'Forbidden' });

@@ -29,3 +29,4 @@ export const addComputer = (computer: TComputers) => new ComputerModel(computer)
 export const updateComputer = (id: string, computer: TComputers) => ComputerModel.findByIdAndUpdate(id, computer);
 export const getTypes = () => ComputerModel.find().distinct("type");
 export const getComputersByType = (type: string) => ComputerModel.find({ type });
+export const addManyComputers = (computers: TComputers[]) => ComputerModel.insertMany(computers);
