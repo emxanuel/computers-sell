@@ -1,6 +1,6 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCart, removeFromCart } from "@/redux/features/cart/cartSlice";
+import { selectCart, dropItem } from "@/redux/features/cart/cartSlice";
 import CartItem from "@/components/CartItem/CartItem";
 import styles from "./styles.module.scss";
 
@@ -15,7 +15,7 @@ export default function Cart() {
                 <CartItem
                     key={item.id}
                     item={item}
-                    onRemove={() => dispatch(removeFromCart(item))}
+                    onRemove={() => dispatch(dropItem(item))}
                 />
             ))}
             {cart.reduce((acc, item) => acc + item.price * item.quantity, 0) >
