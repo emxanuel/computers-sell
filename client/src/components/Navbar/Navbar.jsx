@@ -1,3 +1,4 @@
+"use client";
 import {
     Navbar as Nav,
     NavbarBrand,
@@ -7,11 +8,26 @@ import {
     NavbarMenuItem,
     NavbarMenuToggle,
 } from "@nextui-org/react";
-import { links } from "@/utils";
+import { isClient, links } from "@/utils";
 import Link from "next/link";
 import styles from "./styles.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "@/redux/features/auth/authSlice";
+import dynamic from "next/dynamic";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
+    const user = useSelector(selectUser);
+    const [logInOut, setLogInOut] = useState({
+        label: "Login",
+        href: "/login",
+    });
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (user.id !== undefined) {
+            setLogInOut({ label: "Logout", href: "/logout" });
+        }
+    }, [user]);
     return (
         <Nav shouldHideOnScroll className={styles.container}>
             <NavbarBrand className={styles.logo}>
@@ -41,7 +57,7 @@ export default function Navbar() {
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link href="/login">Login</Link>
+                    <Link href={logInOut.href}>{logInOut.label}</Link>
                 </NavbarItem>
             </NavbarContent>
             <NavbarMenu>
@@ -67,7 +83,7 @@ export default function Navbar() {
                     </Link>
                 </NavbarMenuItem>
                 <NavbarMenuItem>
-                    <Link href="/login">Login</Link>
+                    <Link href={logInOut.href}>{logInOut.label}</Link>
                 </NavbarMenuItem>
             </NavbarMenu>
             <NavbarMenuToggle className="sm:hidden" />

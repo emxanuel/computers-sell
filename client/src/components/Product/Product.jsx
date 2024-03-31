@@ -1,9 +1,18 @@
 import styles from "./styles.module.scss";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import {ToastContainer, toast} from 'react-toastify';
 
 export default function Product({ computer }) {
     const router = useRouter();
+    const dispatch = useDispatch();
+    const handleAddToCart = () => {
+        dispatch(addToCart(computer)),
+        toast.success('Product added to cart!');
+        
+    };
     return (
         <li
             key={computer._id}
@@ -27,6 +36,7 @@ export default function Product({ computer }) {
                 fullWidth
                 variant="bordered"
                 color="primary"
+                onClick={handleAddToCart}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +51,12 @@ export default function Product({ computer }) {
                 </svg>
                 Add to cart
             </Button>
+            <ToastContainer 
+                position="bottom-right"
+                theme="light"
+                autoClose={3000}
+                onClick={e => e.stopPropagation()}
+            />
         </li>
     );
 }

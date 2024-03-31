@@ -40,7 +40,7 @@ export default function Gallery() {
             ) : (
                 <ul className={styles.list}>
                     {computers.map((computer) => (
-                        <Product computer={computer} />
+                        <Product key={computer._id} computer={computer} />
                     ))}
                 </ul>
             )}

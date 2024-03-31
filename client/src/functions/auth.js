@@ -6,10 +6,10 @@ export const login = async (email, password) => {
             email,
             password,
         });
-        console.log(response.headers);
+        console.log(email, password)
         return response.data.user;
     } catch (e) {
-        console.log(e.response.data);
-        return e.response.data
+        console.log(e.response);
+        return e.response
     }
 };

@@ -4,3 +4,5 @@ export const links = [
     { href: "/laptop", label: "Laptops" },
     { href: "/contact", label: "Contact" },
 ];
+
+export const isClient = typeof window !== "undefined";
