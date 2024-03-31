@@ -2,6 +2,7 @@ import "./globals.scss";
 import Navbar from "@/components/Navbar/Navbar";
 import Providers from "./providers";
 import { Input } from "@nextui-org/react";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
     title: "Emm's Computers",

@@ -1,7 +1,15 @@
+"use client"
+
 import LoginForm from "./LoginForm";
 import styles from "./styles.module.scss";
+import { useSelector } from "react-redux";
+import { selectUser } from "@/redux/features/auth/authSlice";
 
 export default function LoginPage() {
+    const user = useSelector(selectUser);
+    if (user.id) {
+        window.location.href = "/";
+    }
     return (
         <div className={styles.container}>
             <div>
