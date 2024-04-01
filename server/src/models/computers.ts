@@ -5,7 +5,12 @@ const computerSchema = new mongoose.Schema({
     name: { type: String, required: true },
     brand: { type: String, required: true },
     hardware: {
-        CPU: { type: String, required: true },
+        CPU: {
+            type: {
+                model: { type: String, required: true },
+                speed: { type: String, required: false },
+            }
+        },
         GPU: { type: String, required: true },
         RAM: { type: String, required: true },
         storage: { type: String, required: true },

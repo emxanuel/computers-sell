@@ -4,8 +4,10 @@ import {
     getAllComputers,
     getComputer,
     getAllComputersByType,
+    createComputer,
+    
 } from "../controllers/computers";
-import { auth } from "../middlewares/auth";
+import { adminAuth } from "../middlewares/auth";
 import axios from "axios";
 
 const computersRouter = Router();
@@ -14,6 +16,7 @@ computersRouter.get("/", getAllComputers);
 computersRouter.get("/types", getComputersType);
 computersRouter.get("/types/:type", getAllComputersByType);
 computersRouter.get("/:id", getComputer);
+computersRouter.post('/', adminAuth, createComputer)
 
 
 export default computersRouter;
