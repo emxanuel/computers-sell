@@ -3,11 +3,20 @@ import { useEffect, useState } from "react";
 import { getComputer } from "@/functions/computers";
 import styles from "./styles.module.scss";
 import { Button } from "@nextui-org/react";
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/features/cart/cartSlice";
 
 export default function ProductPage({ params }) {
     const [computer, setComputer] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const dispatch = useDispatch();
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(computer));
+        toast.success("Product added to cart!");
+    };
 
     useEffect(() => {
         getComputer(params.id)
@@ -50,6 +59,13 @@ export default function ProductPage({ params }) {
                                             {value.size.slice(0, 2)}"{" "}
                                             {value.resolution}
                                         </li>
+                                    ) : key === "CPU"? (
+                                        <li key={key}>
+                                            <strong>
+                                                {key.toUpperCase()}:
+                                            </strong>{" "}
+                                            {value.model} {value.speed}
+                                        </li>
                                     ) : (
                                         <li key={key}>
                                             <strong>
@@ -72,13 +88,18 @@ export default function ProductPage({ params }) {
                                 size="sm"
                                 variant="bordered"
                                 color="primary"
+                                onClick={handleAddToCart}
                             >
-                                Buy now!
+                                Add to cart
                             </Button>
                         </div>
                     </div>
                 </div>
             )}
+            <ToastContainer 
+                position="bottom-right"
+                autoClose={3000}
+            />
         </div>
     );
 }

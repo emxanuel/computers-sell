@@ -1,7 +1,9 @@
+import Gallery from "@/components/Gallery/Gallery";
+
 export default function LaptopsPage() {
     return (
         <div>
-            <h1>Laptops</h1>
+            <Gallery category="Laptop" />
         </div>
     );
 }

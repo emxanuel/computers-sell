@@ -6,24 +6,11 @@ import styles from "./styles.module.scss";
 import { Button, Card } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import Product from "../Product/Product";
+import { useGetComputers } from "@/hooks/useGetComputers";
 
-export default function Gallery() {
+export default function Gallery({category}) {
     const router = useRouter();
-    const [computers, setComputers] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        getComputers()
-            .then((data) => {
-                setComputers(data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                setError(error);
-                setLoading(false);
-            });
-    }, []);
+    const {computers, loading, error} = useGetComputers(category);
 
     return (
         <div className={styles.container}>
