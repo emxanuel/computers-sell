@@ -35,3 +35,9 @@ export const updateComputer = (id: string, computer: TComputers) => ComputerMode
 export const getTypes = () => ComputerModel.find().distinct("type");
 export const getComputersByType = (type: string) => ComputerModel.find({ type });
 export const addManyComputers = (computers: TComputers[]) => ComputerModel.insertMany(computers);
+export const getComputerByBrand = (brand: string) => ComputerModel.find({
+    brand
+});
+export const getComputerBetweenPrice = (min: number, max: number) => ComputerModel.find({
+    price: { $gte: min, $lte: max }
+});

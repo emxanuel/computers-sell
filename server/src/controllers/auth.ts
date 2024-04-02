@@ -4,7 +4,6 @@ import { verifyUser } from "../models/users";
 import { hash } from "../utils";
 
 export const login = async (req: Request, res: Response) => {
-    console.log(req.body)
     const { email, password } = req.body;
     if (!email || !password) {
         return res

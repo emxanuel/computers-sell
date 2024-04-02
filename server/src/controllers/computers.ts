@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getComputers, getComputerById, getTypes, getComputersByType, addComputer } from "../models/computers";
+import { getComputers, getComputerById, getTypes, getComputersByType, addComputer, updateComputer } from "../models/computers";
 
 export const getAllComputers = async (req: Request, res: Response) => {
     try{
@@ -53,6 +53,37 @@ export const createComputer = async (req: Request, res: Response) => {
         res.json({message: "Computer added"});
     }catch(e){
         console.log(e)
+        res.json({error: e})
+    }
+}
+
+export const reduceStock = async (req: Request, res: Response) => {
+    const {id} = req.params;
+    const {quantity} = req.body;
+    try{
+        const computer = await getComputerById(id);
+        if(!computer){
+            res.json({message: "Computer not found"});
+            return;
+        }
+        if((computer.stock ?? 0) < quantity){
+            res.json({message: "Not enough stock"});
+            return;
+        }
+        await updateComputer(id, {...computer, stock: (computer.stock ?? 0) - quantity});
+        res.json({message: "Stock updated"});
+    }catch(e){
+        res.json({error: e})
+    }
+}
+
+export const updateComputerData = async (req: Request, res: Response) => {
+    const {id} = req.params;
+    const computer = req.body;
+    try{
+        await updateComputer(id, computer);
+        res.json({message: "Computer updated"});
+    }catch(e){
         res.json({error: e})
     }
 }
