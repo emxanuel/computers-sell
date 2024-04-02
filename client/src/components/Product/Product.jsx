@@ -3,9 +3,8 @@ import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/features/cart/cartSlice";
-import {ToastContainer, toast} from 'react-toastify';
 
-export default function Product({ computer }) {
+export default function Product({ computer, toast }) {
     const router = useRouter();
     const dispatch = useDispatch();
     const handleAddToCart = () => {
@@ -51,12 +50,6 @@ export default function Product({ computer }) {
                 </svg>
                 Add to cart
             </Button>
-            <ToastContainer 
-                position="bottom-right"
-                theme="light"
-                autoClose={3000}
-                onClick={e => e.stopPropagation()}
-            />
         </li>
     );
 }

@@ -9,7 +9,7 @@ import {
     PURGE,
     REGISTER,
 } from "redux-persist";
-import storage from "@/utils";
+import { storage } from "@/utils";
 import authReducer from "./features/auth/authSlice";
 import cartReducer from "./features/cart/cartSlice";
 

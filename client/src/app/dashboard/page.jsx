@@ -1,8 +1,10 @@
+import DashboardSidebar from "@/components/DashboardSidebar/DashboardSidebar";
+import styles from "./styles.module.scss";
+
 export default function DashboardPage() {
-  return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Welcome to the dashboard!</p>
-    </div>
-  );
+    return (
+        <div className={styles.container}>
+            <DashboardSidebar />
+        </div>
+    );
 }

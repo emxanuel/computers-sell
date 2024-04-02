@@ -10,6 +10,6 @@ export const login = async (email, password) => {
         return response.data.user;
     } catch (e) {
         console.log(e.response);
-        return e.response
+        return e.response.data
     }
 };

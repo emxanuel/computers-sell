@@ -1,3 +1,4 @@
+import { convertToDatabaseComputer } from "@/utils";
 import { api } from "@/utils/server";
 
 export const getComputers = async (category) => {
@@ -24,30 +25,7 @@ export const getComputer = async (id) => {
 
 export const createComputer = async (data) => {
     try {
-        const computer = {
-            name: data.name,
-            brand: data.brand,
-            price: data.price,
-            type: data.type,
-            stock: data.stock,
-            description: data.description,
-            image: data.image,
-            weight: data.weight,
-            OS: data.OS,
-            hardware: {
-                CPU: {
-                    model: data.CPUModel,
-                    speed: data.CPUSpeed,
-                },
-                GPU: data.GPU,
-                RAM: data.RAM,
-                storage: data.storage,
-                display: {
-                    size: data.displaySize,
-                    resolution: data.displayResolution,
-                },
-            },
-        }
+        const computer = convertToDatabaseComputer(data);
 
         console.log(computer)
         const response = await api.post("/computers", computer);
