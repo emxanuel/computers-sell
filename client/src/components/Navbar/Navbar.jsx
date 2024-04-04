@@ -15,10 +15,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "@/redux/features/auth/authSlice";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+    const pathname = usePathname();
     const user = useSelector(selectUser);
-    const inDashboard = window.location.pathname.includes("dashboard");
+    const inDashboard = pathname.includes("dashboard");
     const [logInOut, setLogInOut] = useState({
         label: "Login",
         href: "/login",
@@ -59,15 +61,74 @@ export default function Navbar() {
                         </Link>
                     </NavbarItem>
                     <NavbarItem>
+                        <Link href={"/search"}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5q0-2.725 1.888-4.612T9.5 3q2.725 0 4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5q0-1.875-1.312-3.187T9.5 5Q7.625 5 6.313 6.313T5 9.5q0 1.875 1.313 3.188T9.5 14"
+                                />
+                            </svg>
+                        </Link>
+                    </NavbarItem>
+                    {user.role === 'admin' && <NavbarItem>
+                        <Link href={"/dashboard"}>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M12 23C6.443 21.765 2 16.522 2 11V5l10-4l10 4v6c0 5.524-4.443 10.765-10 12M4 6v5a10.58 10.58 0 0 0 8 10a10.58 10.58 0 0 0 8-10V6l-8-3Z"
+                                />
+                                <circle
+                                    cx="12"
+                                    cy="8.5"
+                                    r="2.5"
+                                    fill="currentColor"
+                                />
+                                <path
+                                    fill="currentColor"
+                                    d="M7 15a5.782 5.782 0 0 0 5 3a5.782 5.782 0 0 0 5-3c-.025-1.896-3.342-3-5-3c-1.667 0-4.975 1.104-5 3"
+                                />
+                            </svg>
+                        </Link>
+                    </NavbarItem>}
+                    <NavbarItem>
                         <Link href={logInOut.href}>{logInOut.label}</Link>
                     </NavbarItem>
                 </NavbarContent>
                 <NavbarMenu>
                     {links.map((link) => (
                         <NavbarMenuItem key={link.href}>
-                            <Link href={link.href}>{link.label}</Link>
+                            <Link href={link.href}>{link.labelMobile}</Link>
                         </NavbarMenuItem>
                     ))}
+                    <NavbarMenuItem>
+                        <Link
+                            href={"/search"}
+                            className="flex items-center gap-2"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5q0-2.725 1.888-4.612T9.5 3q2.725 0 4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5q0-1.875-1.312-3.187T9.5 5Q7.625 5 6.313 6.313T5 9.5q0 1.875 1.313 3.188T9.5 14"
+                                />
+                            </svg>
+                            Search
+                        </Link>
+                    </NavbarMenuItem>
                     <NavbarMenuItem>
                         <Link href="/cart" className="flex items-center gap-2">
                             <svg
@@ -84,6 +145,35 @@ export default function Navbar() {
                             Shopping Cart
                         </Link>
                     </NavbarMenuItem>
+                    {user.role === "admin" && <NavbarMenuItem>
+                        <Link
+                            href={"/dashboard"}
+                            className="flex items-center gap-2"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M12 23C6.443 21.765 2 16.522 2 11V5l10-4l10 4v6c0 5.524-4.443 10.765-10 12M4 6v5a10.58 10.58 0 0 0 8 10a10.58 10.58 0 0 0 8-10V6l-8-3Z"
+                                />
+                                <circle
+                                    cx="12"
+                                    cy="8.5"
+                                    r="2.5"
+                                    fill="currentColor"
+                                />
+                                <path
+                                    fill="currentColor"
+                                    d="M7 15a5.782 5.782 0 0 0 5 3a5.782 5.782 0 0 0 5-3c-.025-1.896-3.342-3-5-3c-1.667 0-4.975 1.104-5 3"
+                                />
+                            </svg>
+                            Dashboard
+                        </Link>
+                    </NavbarMenuItem>}
                     <NavbarMenuItem>
                         <Link href={logInOut.href}>{logInOut.label}</Link>
                     </NavbarMenuItem>

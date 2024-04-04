@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import Providers from "./providers";
 import { Input } from "@nextui-org/react";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "@/components/footer/Footer";
 
 export const metadata = {
     title: "Emm's Computers",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
                     <div className="min-h-screen w-full flex flex-col">
                         <Navbar />
                         {children}
+                        <Footer />
                     </div>
                 </Providers>
             </body>

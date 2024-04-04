@@ -7,7 +7,6 @@ import styles from "./styles.module.scss";
 export default function Cart() {
     const cart = useSelector(selectCart);
     const dispatch = useDispatch();
-    console.log(cart);
     return (
         <div className={styles.container}>
             <h1>Your selections</h1>
@@ -19,7 +18,7 @@ export default function Cart() {
                 />
             ))}
             {cart.reduce((acc, item) => acc + item.price * item.quantity, 0) >
-                0 ? (
+            0 ? (
                 <p className={styles.price}>
                     Total:
                     <strong>
@@ -36,10 +35,12 @@ export default function Cart() {
                             })}
                     </strong>
                 </p>
-                
             ) : (
-                <p className={styles.emptyText}>The items you choose will appear in this section</p>
+                <p className={styles.emptyText}>
+                    The items you choose will appear in this section
+                </p>
             )}
+            
         </div>
     );
 }

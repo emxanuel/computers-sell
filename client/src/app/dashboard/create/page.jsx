@@ -10,7 +10,6 @@ export default function CreatePage() {
     const [computer, setComputer] = useState({});
 
     const handleInputChanges = (e) => {
-        console.log(e.target.name, e.target.value);
         setComputer({
             ...computer,
             [e.target.name]: e.target.value,

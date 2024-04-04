@@ -4,15 +4,13 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 
-export default function Product({ computer, toast }) {
+export default function Product({ computer, toast, detail }) {
     const router = useRouter();
     const dispatch = useDispatch();
     const handleAddToCart = () => {
-        dispatch(addToCart(computer)),
-        toast.success('Product added to cart!');
-        
+        dispatch(addToCart(computer)), toast.success("Product added to cart!");
     };
-    return (
+    return !detail ? (
         <li
             key={computer._id}
             onClick={() => router.push(`/product/${computer._id}`)}
@@ -50,6 +48,44 @@ export default function Product({ computer, toast }) {
                 </svg>
                 Add to cart
             </Button>
+        </li>
+    ) : (
+        <li className={styles.detailsContainer}>
+            <div className={styles.imageContainer}>
+                <img src={computer.image} alt="" />
+            </div>
+            <div className={styles.info}>
+                <div>
+                    <h2>{computer.name}</h2>
+                    <ul>
+                        {Object.entries(computer.hardware).map(([key, value]) =>
+                            key === "display" ? (
+                                <li key={key}>
+                                    <strong>{key.toUpperCase()}:</strong>{" "}
+                                    {value.size.slice(0, 2)}" {value.resolution}
+                                </li>
+                            ) : key === "CPU" ? (
+                                <li key={key}>
+                                    <strong>{key.toUpperCase()}:</strong>{" "}
+                                    {value.model} {value.speed}
+                                </li>
+                            ) : (
+                                <li key={key}>
+                                    <strong>{key.toUpperCase()}:</strong>{" "}
+                                    {value}
+                                </li>
+                            )
+                        )}
+                    </ul>
+                </div>
+                <p className={styles.price}>
+                    $
+                    {computer.price.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                    })}
+                </p>
+            </div>
         </li>
     );
 }
