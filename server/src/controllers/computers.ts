@@ -3,7 +3,7 @@ import { getComputers, getComputerById, getTypes, getComputersByType, addCompute
 
 export const getAllComputers = async (req: Request, res: Response) => {
     try{
-        const {category} = req.query;
+        const {category, q} = req.query;
         if(category){
             const computers = await getComputersByType(category as string);
             res.json(computers);

@@ -25,4 +25,5 @@ export type TComputers = {
     stock?: number;
     description?: string;
     type: string;
+    image: string;
 }

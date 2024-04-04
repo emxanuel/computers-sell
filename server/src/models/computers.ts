@@ -25,6 +25,7 @@ const computerSchema = new mongoose.Schema({
     stock: { type: Number, default: 0 },
     description: { type: String },
     type: { type: String, required: true },
+    image: { type: String, required: true }
 });
 
 export const ComputerModel = mongoose.model<TComputers>("computers", computerSchema);
