@@ -16,7 +16,7 @@ export const useGetComputers = (category, searchParams) => {
                 setError(error);
                 setLoading(false);
             });
-    }, []);
+    }, [searchParams, category]);
 
     return {
         computers,

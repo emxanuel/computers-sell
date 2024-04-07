@@ -28,11 +28,11 @@ export default function Gallery({category, searchParams}) {
                 <p>Error: {error.message}</p>
             ) : isSearch ? (
                 <ul>
-                    {computers.map((computer) => (
+                    {computers.length > 0 ? computers.map((computer) => (
                         <Product toast={toast} key={computer._id} computer={computer} detail={true} />
-                    ))}
+                    )) : (<p className="text-2xl m-auto">No match found</p>)}
                 </ul>
-            ) :  (  
+            ) : (  
                 <ul className={styles.list}>
                     {computers.map((computer) => (
                         <Product toast={toast} key={computer._id} computer={computer} />

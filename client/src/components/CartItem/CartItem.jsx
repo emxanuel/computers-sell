@@ -7,18 +7,34 @@ export default function CartItem({ item, onRemove }) {
     return (
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <div className="flex items-center space-x-4 relative">
-                <img
-                    className="w-16 h-16 object-cover rounded-lg mix-blend-multiply"
-                    src={item.image}
-                    alt={item.name}
-                />
+                <div className="w-16 h-16">
+                    <img
+                        className="object-cover rounded-lg mix-blend-multiply"
+                        src={item.image}
+                        alt={item.name}
+                    />
+                </div>
                 <div>
                     <div className="flex items-center gap-4">
                         <h3 className="text-lg font-semibold">
                             {item.name} x {item.quantity}
                         </h3>
-                        <Button onClick={() => dispatch(addToCart(item))} className="h-7 p-0 rounded-md w-7 min-w-0" variant="bordered"  color="success">+</Button>
-                        <Button onClick={() => dispatch(removeFromCart(item))} className="h-7 p-0 rounded-md w-7 min-w-0" variant="bordered" color="danger">-</Button>
+                        <Button
+                            onClick={() => dispatch(addToCart(item))}
+                            className="h-7 p-0 rounded-md w-7 min-w-0"
+                            variant="bordered"
+                            color="success"
+                        >
+                            +
+                        </Button>
+                        <Button
+                            onClick={() => dispatch(removeFromCart(item))}
+                            className="h-7 p-0 rounded-md w-7 min-w-0"
+                            variant="bordered"
+                            color="danger"
+                        >
+                            -
+                        </Button>
                     </div>
                     <p className="text-gray-500">${item.price}</p>
                 </div>

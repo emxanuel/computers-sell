@@ -3,6 +3,7 @@ import { api } from "@/utils/server";
 
 export const getComputers = async (category, searchParams) => {
     try {
+        console.log(category && searchParams, category, searchParams)
         if (category && searchParams){
             const response = await api.get(`/computers?category=${category}&q=${JSON.stringify(searchParams)}`);
             return response.data;
@@ -35,10 +36,7 @@ export const getComputer = async (id) => {
 
 export const createComputer = async (data) => {
     try {
-        console.log(data);
         const computer = convertToDatabaseComputer(data);
-
-        console.log(computer);
         const response = await api.post("/computers", computer);
         return response.data;
     } catch (error) {
@@ -46,3 +44,13 @@ export const createComputer = async (data) => {
         return error;
     }
 };
+
+
+export const getComputersBrand = async () => {
+    try{
+        const response = await api.get("/computers/brands");
+        return response.data;
+    }catch(error){
+        console.error(error);
+    }
+}
