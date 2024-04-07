@@ -73,7 +73,7 @@ jobs:
           slot-name: 'Production'
           package: ./server
 
-      -name: 'Run server'
+      - name: 'Run server'
         run: |
           cd server
           npm start
