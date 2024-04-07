@@ -26,4 +26,5 @@ export type TComputers = {
     description?: string;
     type: string;
     image: string;
+    stripePriceId: string;
 }

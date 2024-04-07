@@ -25,7 +25,8 @@ const computerSchema = new mongoose.Schema({
     stock: { type: Number, default: 0 },
     description: { type: String },
     type: { type: String, required: true },
-    image: { type: String, required: true }
+    image: { type: String, required: true },
+    stripePriceId: { type: String, required: true }
 });
 
 export const ComputerModel = mongoose.model<TComputers>("computers", computerSchema);
@@ -42,3 +43,4 @@ export const getComputerByBrand = (brand: string) => ComputerModel.find({
 export const getComputerBetweenPrice = (min: number, max: number) => ComputerModel.find({
     price: { $gte: min, $lte: max }
 });
+export const getBrands = () => ComputerModel.find().distinct("brand");
