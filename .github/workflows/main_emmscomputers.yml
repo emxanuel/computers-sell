@@ -25,6 +25,7 @@ jobs:
         run: |
           cd server
           npm install
+          npm install -g ts-node
         env:
           AUTH_TOKEN_SECRET: ${{ secrets.AUTH_TOKEN_SECRET }}
           MONGO_DB_URI: ${{ secrets.MONGO_DB_URI }}
@@ -71,4 +72,9 @@ jobs:
           app-name: 'emmscomputers'
           slot-name: 'Production'
           package: ./server
+
+      -name: 'Run server'
+        run: |
+          cd server
+          npm start
           
