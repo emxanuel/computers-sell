@@ -65,6 +65,11 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D4CDB44B60414C2FABBD5A93C8B21722 }}
           
       - name: 'Run server'
+        env:
+          AUTH_TOKEN_SECRET: ${{ secrets.AUTH_TOKEN_SECRET }}
+          MONGO_DB_URI: ${{ secrets.MONGO_DB_URI }}
+          SITE: ${{ secrets.SITE }}
+          PORT: ${{env.port}}
         run: |
           cd server
           npm install -g ts-node  
