@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const computers_1 = require("../controllers/computers");
+const auth_1 = require("../middlewares/auth");
+const computersRouter = (0, express_1.Router)();
+computersRouter.get("/", computers_1.getAllComputers);
+computersRouter.get("/types", computers_1.getComputersType);
+computersRouter.get("/types/:type", computers_1.getAllComputersByType);
+computersRouter.get('/brands', computers_1.getComputersBrand);
+computersRouter.get('/brands/:brand', computers_1.getAllComputersByBrand);
+computersRouter.post('/', auth_1.adminAuth, computers_1.createComputer);
+computersRouter.put('/reduce/:id', auth_1.auth, computers_1.reduceStock);
+computersRouter.put('/:id', auth_1.adminAuth, computers_1.updateComputerData);
+computersRouter.get("/:id", computers_1.getComputer);
+exports.default = computersRouter;
