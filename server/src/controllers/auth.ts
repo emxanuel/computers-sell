@@ -26,7 +26,9 @@ export const login = async (req: Request, res: Response) => {
         },
         process.env.AUTH_TOKEN_SECRET || ""
     );
-    res.cookie("accessToken", accessToken);
+    res.cookie("accessToken", accessToken, {
+        sameSite: "none",
+    });
     res.status(200).json({
         user,
     });
