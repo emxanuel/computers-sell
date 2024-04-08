@@ -51,6 +51,7 @@
     width: clamp(500px, 60vw, 80vw);
     transition-duration: 300ms;
     cursor: pointer;
+    padding: 1rem 0;
     .imageContainer {
         width: clamp(100px, 11.5vw, 400px);
         height: clamp(100px, 11.5vw, 400px);
@@ -70,6 +71,7 @@
         flex-direction: column;
         flex: 1;
         font-size: 10px;
+        
         > div {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -88,6 +90,11 @@
         }
         .price{
             font-weight: 600;
+        }
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: .2rem;
         }
     }
     &:hover{

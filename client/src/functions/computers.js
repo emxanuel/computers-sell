@@ -1,7 +1,7 @@
 import { convertToDatabaseComputer } from "@/utils";
 import { api } from "@/utils/server";
 
-export const getComputers = async (category, searchParams) => {
+export const getComputers = async (category, searchParams, controller) => {
     try {
         console.log(category && searchParams, category, searchParams)
         if (category && searchParams){

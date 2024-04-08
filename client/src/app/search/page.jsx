@@ -16,7 +16,6 @@ export default function SearchPage() {
         brands: [],
         type: "Laptop",
     });
-    console.log(filters)
     const [queryState, setQuery] = useState("");
 
     useEffect(() => {
