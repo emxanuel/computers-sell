@@ -140,4 +140,17 @@
             }
         }
     }
+    .container{
+        width: clamp(100px, 80vw, 500px);
+        height: clamp(100px, 80vw, 500px);
+        > div {
+            width: clamp(100px, 60vw, 400px);
+            height: clamp(100px, 60vw, 400px);
+            img {
+                mix-blend-mode: multiply;
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
 }

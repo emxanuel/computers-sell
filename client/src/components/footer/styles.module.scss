@@ -1,5 +1,22 @@
 .container{
     height: 20rem;
-    background-color: #00041b;
-    color: white;
+    background-color: #919191;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    h2{
+        font-size: 2rem;
+        font-weight: 400;
+        text-align: center;
+    }
+    .personalInfo{
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+        text-align: center;
+    }
 }

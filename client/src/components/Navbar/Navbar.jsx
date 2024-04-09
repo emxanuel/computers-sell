@@ -21,10 +21,12 @@ export default function Navbar() {
     const pathname = usePathname();
     const user = useSelector(selectUser);
     const inDashboard = pathname.includes("dashboard");
+    const [menuOpen, setMenuOpen] = useState(false);
     const [logInOut, setLogInOut] = useState({
         label: "Login",
         href: "/login",
     });
+    const handleClickMenu = () => setMenuOpen(!menuOpen);
     const dispatch = useDispatch();
     useEffect(() => {
         if (user.id !== undefined) {
@@ -33,7 +35,7 @@ export default function Navbar() {
     }, [user]);
     return (
         !inDashboard && (
-            <Nav shouldHideOnScroll className={styles.container}>
+            <Nav shouldHideOnScroll className={styles.container} isMenuOpen={menuOpen}>
                 <NavbarBrand className={styles.logo}>
                     <Link href="/">Emm's Computers</Link>
                 </NavbarBrand>
@@ -107,13 +109,14 @@ export default function Navbar() {
                 <NavbarMenu>
                     {links.map((link) => (
                         <NavbarMenuItem key={link.href}>
-                            <Link href={link.href}>{link.labelMobile}</Link>
+                            <Link href={link.href} onClick={handleClickMenu}>{link.labelMobile}</Link>
                         </NavbarMenuItem>
                     ))}
                     <NavbarMenuItem>
                         <Link
                             href={"/search"}
                             className="flex items-center gap-2"
+                            onClick={handleClickMenu}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -130,7 +133,7 @@ export default function Navbar() {
                         </Link>
                     </NavbarMenuItem>
                     <NavbarMenuItem>
-                        <Link href="/cart" className="flex items-center gap-2">
+                        <Link href="/cart" className="flex items-center gap-2" onClick={handleClickMenu}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="20"
@@ -149,6 +152,7 @@ export default function Navbar() {
                         <Link
                             href={"/dashboard"}
                             className="flex items-center gap-2"
+                            onClick={handleClickMenu}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -175,10 +179,10 @@ export default function Navbar() {
                         </Link>
                     </NavbarMenuItem>}
                     <NavbarMenuItem>
-                        <Link href={logInOut.href}>{logInOut.label}</Link>
+                        <Link onClick={handleClickMenu} href={logInOut.href}>{logInOut.label}</Link>
                     </NavbarMenuItem>
                 </NavbarMenu>
-                <NavbarMenuToggle className="sm:hidden" />
+                <NavbarMenuToggle className="sm:hidden" onClick={handleClickMenu}/>
             </Nav>
         )
     );

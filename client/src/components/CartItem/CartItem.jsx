@@ -6,8 +6,8 @@ export default function CartItem({ item, onRemove }) {
     const dispatch = useDispatch();
     return (
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <div className="flex items-center space-x-4 relative">
-                <div className="w-16 h-16">
+            <div className="flex flex-col md:flex-row items-center space-x-4 relative">
+                <div className="w-32 h-32 md:w-16 md:h-16">
                     <img
                         className="object-cover rounded-lg mix-blend-multiply"
                         src={item.image}
@@ -21,7 +21,7 @@ export default function CartItem({ item, onRemove }) {
                         </h3>
                         <Button
                             onClick={() => dispatch(addToCart(item))}
-                            className="h-7 p-0 rounded-md w-7 min-w-0"
+                            className="h-6 md:h-7 p-0 rounded-md w-8 md:w-7 min-w-0"
                             variant="bordered"
                             color="success"
                         >
@@ -29,7 +29,7 @@ export default function CartItem({ item, onRemove }) {
                         </Button>
                         <Button
                             onClick={() => dispatch(removeFromCart(item))}
-                            className="h-7 p-0 rounded-md w-7 min-w-0"
+                            className="h-6 md:h-7 p-0 rounded-md w-8 md:w-7 min-w-0"
                             variant="bordered"
                             color="danger"
                         >
@@ -39,7 +39,7 @@ export default function CartItem({ item, onRemove }) {
                     <p className="text-gray-500">${item.price}</p>
                 </div>
             </div>
-            <button className="text-red-500" onClick={onRemove}>
+            <button className="text-red-500 hidden md:block" onClick={onRemove}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"

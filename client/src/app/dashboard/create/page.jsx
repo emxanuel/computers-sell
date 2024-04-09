@@ -201,6 +201,12 @@ export default function CreatePage() {
                     onChange={handleInputChanges}
                     variant="bordered"
                 />
+                <Input 
+                    label='Stripe price ID'
+                    name='stripePriceId'
+                    onChange={handleInputChanges}
+                    variant='bordered'
+                />
             </div>
             <Button color="success" variant="faded" onClick={handleSubmit}>
                 Create
