@@ -26,7 +26,7 @@ export const login = async (req: Request, res: Response) => {
         },
         process.env.AUTH_TOKEN_SECRET || ""
     );
-    res.header('Set-Cookie', `accessToken=${accessToken}; HttpOnly; SameSite=None; Secure`);
+    res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'none', secure: true})
     res.status(200).json({
         user,
     });
