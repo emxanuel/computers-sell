@@ -25,7 +25,7 @@ const login = async (req, res) => {
         lastName: user.lastName,
         role: user.role,
     }, process.env.AUTH_TOKEN_SECRET || "");
-    res.cookie("accessToken", accessToken);
+    res.cookie('accessToken', accessToken, { sameSite: 'none', secure: true });
     res.status(200).json({
         user,
     });
