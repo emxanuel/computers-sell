@@ -4,11 +4,13 @@ import LoginForm from "./LoginForm";
 import styles from "./styles.module.scss";
 import { useSelector } from "react-redux";
 import { selectUser } from "@/redux/features/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const user = useSelector(selectUser);
+    const router = useRouter();
     if (user.id) {
-        window.location.href = "/";
+        router.push("/");
     }
     return (
         <div className={styles.container}>

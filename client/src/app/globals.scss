@@ -11,3 +11,12 @@ body{
     font-family: "Ubuntu", sans-serif;
     font-size: clamp(16px, 1.1vw, 20px);
 }
+
+::-webkit-scrollbar{
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #1b4247;
+    border-radius: 10px;
+}
