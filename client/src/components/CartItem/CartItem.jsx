@@ -7,7 +7,7 @@ export default function CartItem({ item, onRemove }) {
     return (
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <div className="flex flex-col md:flex-row items-center space-x-4 relative">
-                <div className="w-32 h-32 md:w-16 md:h-16">
+                <div className="w-32 h-32 md:w-16 md:h-16 flex items-center justify-center">
                     <img
                         className="object-cover rounded-lg mix-blend-multiply"
                         src={item.image}

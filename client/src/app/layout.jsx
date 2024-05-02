@@ -4,6 +4,9 @@ import Providers from "./providers";
 import { Input } from "@nextui-org/react";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "@/components/footer/Footer";
+import {Poppins} from 'next/font/google'
+
+const poppins = Poppins({subsets: ['latin'], weight: "500"})
 
 export const metadata = {
     title: "Emm's Computers",
@@ -13,9 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body>
+            <body className={poppins.className}>
                 <Providers>
-                    <div className="min-h-screen w-full flex flex-col">
+                    <div className="min-h-screen w-full flex flex-col justify-between">
                         <Navbar />
                         {children}
                         <Footer />
